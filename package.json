@@ -25,6 +25,6 @@
         "test": "yarn clean && yarn test:build && yarn test:run",
         "build": "yarn clean && yarn test && yarn build:lib",
         "build:lib": "tsc --build tsconfig.json",
-        "clean": "yarn shx rm -rf dist && yarn shx rm -rf lib"
+        "clean": "yarn shx rm -rf dist && yarn shx rm -rf output"
     }
 }
