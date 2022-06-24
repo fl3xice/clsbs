@@ -1,9 +1,9 @@
-import { Logic } from ".";
+import { defaultInputLineOptions, InputLineOptions, Logic } from ".";
 
 export default class InputLine<T = any> {
     private logicInterfaces: Logic<T>[] = [];
     private nowLogic: Logic = Logic.defaultLogic;
-    private splitCmd: string[];
+    private splittedCmd: string[];
     private dataForSendInResult: T[] = [];
 
     /*
@@ -11,8 +11,23 @@ export default class InputLine<T = any> {
      */
     private accessToSwitch: boolean = true;
 
-    constructor(public readonly cmd: string) {
-        this.splitCmd = cmd.split(/\s+/g);
+    constructor(
+        public readonly cmd: string,
+        public readonly options: InputLineOptions = defaultInputLineOptions
+    ) {
+        this.splitCmd();
+    }
+
+    private splitCmd() {
+        if (this.options.enableQoute) {
+            this.splittedCmd = this.cmd.split(/"([^"]*)"/);
+        } else {
+            this.splittedCmd = this.cmd.split(/\s+/g);
+        }
+
+        this.splittedCmd = this.splittedCmd
+            .map((item) => item.trim())
+            .filter((cmd) => cmd !== "");
     }
 
     public addLogic(logic: Logic<T>) {
@@ -20,17 +35,22 @@ export default class InputLine<T = any> {
     }
 
     public execute(): T[] {
-        for (let cmd of this.splitCmd) {
+        for (let cmd of this.splittedCmd) {
             if (this.nowLogic.isCmd(cmd) && this.accessToSwitch) {
                 // If found new logic with keywords, switch to new logic
                 this.nowLogic = this.logicInterfaces.find((logic) =>
                     logic.isCmd(cmd)
                 );
 
-                // Disable access to switch
-                this.disableAccessToSwitch();
+                if (this.nowLogic === undefined) {
+                    this.nowLogic = Logic.defaultLogic;
+                } else {
+                    // Disable access to switch
+                    this.disableAccessToSwitch();
+                }
             } else {
                 this.accessToSwitch = this.nowLogic.fn(cmd);
+
                 if (this.accessToSwitch) {
                     this.nowLogic = Logic.defaultLogic;
                 }

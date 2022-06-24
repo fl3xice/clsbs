@@ -39,3 +39,18 @@ test("Main Test of inputLine #2", () => {
 
     expect(inputLine.execute()).toEqual(["create > foo", "delete > foo"]);
 });
+
+test("Main Test of inputLine #3", () => {
+    const inputLine = new InputLine<any>('CREATE "example" DELETE "example"', {
+        enableQoute: true,
+    });
+
+    inputLine.addLogic(
+        new Logic(["create"], (data) => {
+            inputLine.addDataToSendResult(data);
+            return true;
+        })
+    );
+
+    expect(inputLine.execute()).toEqual(["example"]);
+});
