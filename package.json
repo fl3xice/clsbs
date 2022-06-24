@@ -1,9 +1,30 @@
 {
-  "name": "clsbs",
-  "version": "1.0.0",
-  "description": "Library for create a logic with commands",
-  "main": "index.js",
-  "author": "flexice",
-  "license": "MIT",
-  "private": false
+    "name": "clsbs",
+    "version": "1.0.0",
+    "description": "Library for create a logic with commands",
+    "main": "index.js",
+    "author": "flexice",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fl3xice/clsbs.git"
+    },
+    "private": false,
+    "homepage": "https://github.com/fl3xice/clsbs#readme",
+    "devDependencies": {
+        "@types/jest": "^28.1.3",
+        "@types/node": "^18.0.0",
+        "jest": "^28.1.1",
+        "shx": "^0.3.4",
+        "ts-node": "^10.8.1",
+        "typescript": "^4.7.4"
+    },
+    "scripts": {
+        "test:run": "jest",
+        "test:build": "tsc --build tsconfig.test.json",
+        "test": "yarn test:run && yarn test:build",
+        "build": "yarn clean && yarn test && yarn build:lib",
+        "build:lib": "tsc",
+        "clean": "yarn shx rm -rf dist output"
+    }
 }
