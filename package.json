@@ -22,9 +22,9 @@
     "scripts": {
         "test:run": "jest",
         "test:build": "tsc --build tsconfig.test.json",
-        "test": "yarn test:run && yarn test:build",
+        "test": "yarn clean && yarn test:build && yarn test:run",
         "build": "yarn clean && yarn test && yarn build:lib",
-        "build:lib": "tsc",
-        "clean": "yarn shx rm -rf dist output"
+        "build:lib": "tsc --build tsconfig.json",
+        "clean": "yarn shx rm -rf dist && yarn shx rm -rf lib"
     }
 }
