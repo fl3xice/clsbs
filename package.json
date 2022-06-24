@@ -1,0 +1,9 @@
+{
+  "name": "clsbs",
+  "version": "1.0.0",
+  "description": "Library for create a logic with commands",
+  "main": "index.js",
+  "author": "flexice",
+  "license": "MIT",
+  "private": false
+}
