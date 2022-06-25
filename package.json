@@ -1,6 +1,6 @@
 {
     "name": "clsbs",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Library for create a logic with commands",
     "main": "dist/index.js",
     "author": "flexice",
@@ -18,6 +18,11 @@
         "shx": "^0.3.4",
         "ts-node": "^10.8.1",
         "typescript": "^4.7.4"
+    },
+    "directories": {
+        "lib": "dist",
+        "bin": "src",
+        "test": "output"
     },
     "scripts": {
         "test:run": "jest",
