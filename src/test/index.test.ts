@@ -79,6 +79,6 @@ test("Someone logic is a cmd", () => {
         })
     );
 
-    expect(inputLine.execute()).toEqual(["example"]);
-    expect(inputLine.errors).toEqual(["Use another logic for this cmd"]);
+    expect(inputLine.execute()).toEqual([]);
+    expect(inputLine.errors).toEqual([]);
 });
