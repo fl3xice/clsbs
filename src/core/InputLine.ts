@@ -5,7 +5,7 @@ export default class InputLine<T = any> {
     private nowLogic: Logic = Logic.defaultLogic;
     private splittedCmd: string[];
     private dataForSendInResult: T[] = [];
-
+    public errors: string[] = [];
     /*
      * it variable give access to new logic switch for nowLogic
      */
@@ -32,6 +32,20 @@ export default class InputLine<T = any> {
 
     public addLogic(logic: Logic<T>) {
         this.logicInterfaces.push(logic);
+    }
+
+    public isSomeoneCmd(cmd: string): boolean {
+        for (let logic of this.logicInterfaces) {
+            if (logic.isCmd(cmd)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public throwError(error: string) {
+        this.errors.push(error);
     }
 
     public execute(): T[] {
