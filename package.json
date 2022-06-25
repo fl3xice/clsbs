@@ -1,8 +1,7 @@
 {
     "name": "clsbs",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Library for create a logic with commands",
-    "main": "dist/index.js",
     "author": "flexice",
     "license": "MIT",
     "repository": {
@@ -24,7 +23,7 @@
         "bin": "src",
         "test": "output"
     },
-    "types": "/dist/**/*.d.ts",
+    "types": "/dist/index.d.ts",
     "files": [
         "/dist"
     ],

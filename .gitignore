@@ -3,3 +3,5 @@ node_modules
 # Results after build library
 output
 dist
+
+*.log
