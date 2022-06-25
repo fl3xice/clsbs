@@ -1,5 +1,4 @@
 export type LogicFunction = (data: string) => boolean;
-
 export default class Logic<T = any> {
     private isLogicWorkForAnything: boolean = false;
 
