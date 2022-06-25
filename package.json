@@ -24,6 +24,10 @@
         "bin": "src",
         "test": "output"
     },
+    "types": "./dist/index.d.ts",
+    "files": [
+        "/dist"
+    ],
     "scripts": {
         "test:run": "jest",
         "test:build": "tsc --build tsconfig.test.json",
